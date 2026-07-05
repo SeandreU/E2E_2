@@ -26,7 +26,7 @@ const DriverDashboard: React.FC = () => {
       ]);
 
       if (userRes.status === 401) {
-        navigate('/login');
+        navigate('/auth');
         return;
       }
 
@@ -99,16 +99,22 @@ const DriverDashboard: React.FC = () => {
             Rating actual: <strong>{driver.rating > 0 ? `${driver.rating} ⭐` : 'Sin calificaciones'}</strong>
           </p>
         </div>
-        <div>
-          <span style={{ 
-            padding: '5px 10px', 
-            borderRadius: '12px', 
-            background: driver.available ? '#0caf03' : '#ea7e3b', 
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{
+            padding: '5px 10px',
+            borderRadius: '12px',
+            background: driver.available ? '#0caf03' : '#ea7e3b',
             color: 'white',
             fontWeight: 'bold'
           }}>
             {driver.available ? 'DISPONIBLE' : 'OCUPADO'}
           </span>
+          <button
+            onClick={() => navigate('/history')}
+            style={{ padding: '10px 20px', background: 'white', color: 'black', border: '1px solid black', cursor: 'pointer' }}
+          >
+            Ver historial
+          </button>
         </div>
       </header>
 
@@ -120,7 +126,7 @@ const DriverDashboard: React.FC = () => {
           <p><strong>Pasajero:</strong> {activeTrip.passenger.firstName} {activeTrip.passenger.lastName}</p>
           
           <button 
-            onClick={() => navigate(`/trips/${activeTrip.id}`)}
+            onClick={() => navigate(`/driver/trips/${activeTrip.id}`)}
             style={{ 
               marginTop: '15px', padding: '10px 20px', background: '#0caf03', 
               color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' 

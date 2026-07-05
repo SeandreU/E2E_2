@@ -28,7 +28,7 @@ const PassengerDashboard: React.FC = () => {
           setUser(userData);
           setTrips(tripsData);
         } else if (userRes.status === 401) {
-          navigate('/login');
+          navigate('/auth');
         }
       } catch (error) {
         console.error("Error fetching passenger data:", error);
@@ -70,12 +70,20 @@ const PassengerDashboard: React.FC = () => {
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <h2>Hola, {user.firstName} {user.lastName}</h2>
-        <button 
-          onClick={() => navigate('/request-trip')}
-          style={{ padding: '10px 20px', background: 'black', color: 'white', border: 'none', cursor: 'pointer' }}
-        >
-          Pedir nuevo viaje
-        </button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button
+            onClick={() => navigate('/history')}
+            style={{ padding: '10px 20px', background: 'white', color: 'black', border: '1px solid black', cursor: 'pointer' }}
+          >
+            Ver historial
+          </button>
+          <button
+            onClick={() => navigate('/passenger/trips/new')}
+            style={{ padding: '10px 20px', background: 'black', color: 'white', border: 'none', cursor: 'pointer' }}
+          >
+            Pedir nuevo viaje
+          </button>
+        </div>
       </header>
 
       <h3>Mis Viajes</h3>
@@ -91,7 +99,7 @@ const PassengerDashboard: React.FC = () => {
               </div>
               <p><strong>Origen:</strong> {trip.pickupAddress}</p>
               <p><strong>Destino:</strong> {trip.dropoffAddress}</p>
-              <button onClick={() => navigate(`/trips/${trip.id}`)}>Ver detalle</button>
+              <button onClick={() => navigate(`/passenger/trips/${trip.id}`)}>Ver detalle</button>
             </li>
           ))}
         </ul>

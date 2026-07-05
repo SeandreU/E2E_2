@@ -1,6 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AuthPage from "./pages/AuthPage";
 import DriverTripDetailPage from "./pages/DriverTripDetailPage";
+import PassengerDashboard from "./pages/PassengerDashboard";
+import DriverDashboard from "./pages/DriverDashboard";
 
 function App() {
   return (
@@ -8,9 +10,9 @@ function App() {
       <Routes>
         <Route path="/auth" element={<AuthPage />} />
 
-        <Route path="/passenger" element={<h1>Dashboard pasajero</h1>} />
+        <Route path="/passenger" element={<PassengerDashboard />} />
 
-        <Route path="/driver" element={<h1>Dashboard conductor</h1>} />
+        <Route path="/driver" element={<DriverDashboard />} />
 
         <Route path="/driver/trips/:id" element={<DriverTripDetailPage />} />
 
